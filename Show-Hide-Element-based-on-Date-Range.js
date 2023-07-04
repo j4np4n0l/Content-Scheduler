@@ -4,22 +4,16 @@
 scheduleContent("#elementName", "2023-07-01 00:00", "2023-07-31 23:59");
 
 function scheduleContent(elementID, startDateTime, endDateTime) {
-
   const content = document.querySelector(elementID);
   const startDate = startDateTime;
   const endDate = endDateTime;
 
-  //console.log("Start:" + startDate, "End:" + endDate);
-
-  if ( isWithinDateRange() ) {
-    console.log("Display:", content);
-  } else {
+  if ( !isWithinDateRange() ) {
     console.log("Hidden:", content);
     content.style.display = "none";
   }
 
   function isWithinDateRange() {
-    
     const currentHour = new Date().getHours();
     const currentMinute = new Date().getMinutes();
 
@@ -27,9 +21,7 @@ function scheduleContent(elementID, startDateTime, endDateTime) {
     const todayDate = new Date().toISOString().slice(0, 10);
 
     today = todayDate + " " + todayTime;
-
-    //console.log(today);
+    
     return today >= startDateTime && today <= endDateTime;
-
   }
 }
